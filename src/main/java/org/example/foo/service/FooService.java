@@ -38,7 +38,7 @@ public class FooService {
 		throw e;
 	}
 
-	@Retryable(retryFor = RecoverableException.class, notRecoverable = NonRecoverableException.class, maxAttempts = 2, backoff = @Backoff(delay = 1000))
+	@Retryable(retryFor = RecoverableException.class, noRetryFor = NonRecoverableException.class, maxAttempts = 2, backoff = @Backoff(delay = 1000))
 	public boolean throwsException(boolean recoverable) throws RecoverableException, NonRecoverableException {
 		if (recoverable) {
 			throw new RecoverableException();
